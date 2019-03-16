@@ -33,7 +33,7 @@ AC_PREREQ([2.60])
 # synchronized.
 #
 AC_INIT(libXfixes, [5.0.3],
-	[https://bugs.freedesktop.org/enter_bug.cgi?product=xorg], [libXfixes])
+	[https://gitlab.freedesktop.org/xorg/lib/libXfixes/issues], [libXfixes])
 AC_CONFIG_SRCDIR([Makefile.am])
 AC_CONFIG_HEADERS([config.h])
 
