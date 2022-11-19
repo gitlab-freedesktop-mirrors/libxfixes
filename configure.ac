@@ -55,7 +55,8 @@ FIXESEXT_VERSION=[`echo $VERSION | sed 's/^\([0-9][0-9]*\.[0-9][0-9]*\).*$/\1/'`
 AC_SUBST(FIXESEXT_VERSION)
 
 # Obtain compiler/linker options for dependencies
-PKG_CHECK_MODULES(FIXESEXT, xproto [fixesproto >= $FIXESEXT_VERSION] xextproto [x11 >= 1.6])
+PKG_CHECK_MODULES(FIXESEXT,
+    [xproto >= 7.0.22] [fixesproto >= $FIXESEXT_VERSION] xextproto [x11 >= 1.6])
 
 
 AC_CONFIG_FILES([Makefile

@@ -24,6 +24,7 @@
 #ifdef HAVE_CONFIG_H
 #include <config.h>
 #endif
+#include <X11/Xfuncproto.h>
 #include "Xfixesint.h"
 
 XFixesExtInfo XFixesExtensionInfo;
@@ -203,7 +204,7 @@ XFixesFindDisplay (Display *dpy)
 }
 
 static int
-XFixesCloseDisplay (Display *dpy, XExtCodes *codes)
+XFixesCloseDisplay (Display *dpy, _X_UNUSED XExtCodes *codes)
 {
     return XFixesExtRemoveDisplay (&XFixesExtensionInfo, dpy);
 }
