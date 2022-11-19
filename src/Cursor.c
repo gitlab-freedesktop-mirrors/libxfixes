@@ -61,7 +61,7 @@ XFixesSelectCursorInput (Display	*dpy,
 
     LockDisplay (dpy);
     GetReq (XFixesSelectCursorInput, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesSelectCursorInput;
     req->window = (CARD32) win;
     req->eventMask = (CARD32) eventMask;
@@ -84,7 +84,7 @@ XFixesGetCursorImage (Display *dpy)
     XFixesCheckExtension (dpy, info, NULL);
     LockDisplay (dpy);
     GetReq (XFixesGetCursorImageAndName, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     if (info->major_version >= 2)
 	req->xfixesReqType = X_XFixesGetCursorImageAndName;
     else
@@ -162,7 +162,7 @@ XFixesSetCursorName (Display *dpy, Cursor cursor, const char *name)
 	return;
     LockDisplay (dpy);
     GetReq (XFixesSetCursorName, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesSetCursorName;
     req->cursor = (CARD32) cursor;
     req->nbytes = nbytes;
@@ -185,7 +185,7 @@ XFixesGetCursorName (Display *dpy, Cursor cursor, Atom *atom)
 	return NULL;
     LockDisplay (dpy);
     GetReq (XFixesGetCursorName, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesGetCursorName;
     req->cursor = (CARD32) cursor;
     if (!_XReply (dpy, (xReply *) &rep, 0, xFalse))
@@ -218,7 +218,7 @@ XFixesChangeCursor (Display *dpy, Cursor source, Cursor destination)
 	return;
     LockDisplay (dpy);
     GetReq (XFixesChangeCursor, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesChangeCursor;
     req->source = (CARD32) source;
     req->destination = (CARD32) destination;
@@ -238,7 +238,7 @@ XFixesChangeCursorByName (Display *dpy, Cursor source, const char *name)
 	return;
     LockDisplay (dpy);
     GetReq (XFixesChangeCursorByName, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesChangeCursorByName;
     req->source = (CARD32) source;
     req->nbytes = nbytes;
@@ -259,7 +259,7 @@ XFixesHideCursor (Display *dpy, Window win)
 	return;
     LockDisplay (dpy);
     GetReq (XFixesHideCursor, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesHideCursor;
     req->window = (CARD32) win;
     UnlockDisplay (dpy);
@@ -277,7 +277,7 @@ XFixesShowCursor (Display *dpy, Window win)
 	return;
     LockDisplay (dpy);
     GetReq (XFixesShowCursor, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesShowCursor;
     req->window = (CARD32) win;
     UnlockDisplay (dpy);
@@ -303,17 +303,17 @@ XFixesCreatePointerBarrier(Display *dpy, Window w, int x1, int y1,
 
     LockDisplay (dpy);
     GetReqExtra (XFixesCreatePointerBarrier, extra, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesCreatePointerBarrier;
     barrier = XAllocID (dpy);
     req->barrier = (CARD32) barrier;
     req->window = (CARD32) w;
-    req->x1 = x1;
-    req->y1 = y1;
-    req->x2 = x2;
-    req->y2 = y2;
+    req->x1 = (INT16) x1;
+    req->y1 = (INT16) y1;
+    req->x2 = (INT16) x2;
+    req->y2 = (INT16) y2;
     req->directions = directions;
-    if ((req->num_devices = num_devices)) {
+    if ((req->num_devices = (CARD16) num_devices)) {
 	int i;
 	CARD16 *devs = (CARD16 *)(req + 1);
 	for (i = 0; i < num_devices; i++)
@@ -337,7 +337,7 @@ XFixesDestroyPointerBarrier(Display *dpy, PointerBarrier b)
 
     LockDisplay (dpy);
     GetReq (XFixesDestroyPointerBarrier, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesDestroyPointerBarrier;
     req->barrier = (CARD32) b;
     UnlockDisplay (dpy);

@@ -76,7 +76,7 @@ XFixesExtAddDisplay (XFixesExtInfo *extinfo,
 	 */
 	LockDisplay (dpy);
 	GetReq (XFixesQueryVersion, req);
-	req->reqType = info->codes->major_opcode;
+	req->reqType = (CARD8) info->codes->major_opcode;
 	req->xfixesReqType = X_XFixesQueryVersion;
 	req->majorVersion = XFIXES_MAJOR;
 	req->minorVersion = XFIXES_MINOR;
@@ -270,8 +270,8 @@ XFixesEventToWire(Display *dpy, XEvent *event, xEvent *wire)
 	xXFixesSelectionNotifyEvent *awire;
 	awire = (xXFixesSelectionNotifyEvent *) wire;
 	aevent = (XFixesSelectionNotifyEvent *) event;
-	awire->type = aevent->type | (aevent->send_event ? 0x80 : 0);
-	awire->subtype = aevent->subtype;
+	awire->type = (CARD8) (aevent->type | (aevent->send_event ? 0x80 : 0));
+	awire->subtype = (CARD8) aevent->subtype;
 	awire->window = (CARD32) aevent->window;
 	awire->owner = (CARD32) aevent->owner;
 	awire->selection = (CARD32) aevent->selection;
@@ -284,8 +284,8 @@ XFixesEventToWire(Display *dpy, XEvent *event, xEvent *wire)
 	xXFixesCursorNotifyEvent *awire;
 	awire = (xXFixesCursorNotifyEvent *) wire;
 	aevent = (XFixesCursorNotifyEvent *) event;
-	awire->type = aevent->type | (aevent->send_event ? 0x80 : 0);
-	awire->subtype = aevent->subtype;
+	awire->type = (CARD8) (aevent->type | (aevent->send_event ? 0x80 : 0));
+	awire->subtype = (CARD8) aevent->subtype;
 	awire->window = (CARD32) aevent->window;
 	awire->timestamp = (CARD32) aevent->timestamp;
 	awire->cursorSerial = (CARD32) aevent->cursor_serial;

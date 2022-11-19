@@ -61,7 +61,7 @@ XFixesSetClientDisconnectMode(Display *dpy, int disconnect_mode)
 
     LockDisplay(dpy);
     GetReq(XFixesSetClientDisconnectMode, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesSetClientDisconnectMode;
     req->disconnect_mode = disconnect_mode;
     UnlockDisplay(dpy);
@@ -82,7 +82,7 @@ XFixesGetClientDisconnectMode(Display *dpy)
 
     LockDisplay(dpy);
     GetReq(XFixesGetClientDisconnectMode, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesGetClientDisconnectMode;
 
     if (!_XReply(dpy, (xReply *) &rep, 0, xFalse))

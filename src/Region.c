@@ -37,7 +37,7 @@ XFixesCreateRegion (Display *dpy, XRectangle *rectangles, int nrectangles)
     XFixesCheckExtension (dpy, info, 0);
     LockDisplay (dpy);
     GetReq (XFixesCreateRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesCreateRegion;
     region = XAllocID (dpy);
     req->region = (CARD32) region;
@@ -60,7 +60,7 @@ XFixesCreateRegionFromBitmap (Display *dpy, Pixmap bitmap)
     XFixesCheckExtension (dpy, info, 0);
     LockDisplay (dpy);
     GetReq (XFixesCreateRegionFromBitmap, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesCreateRegionFromBitmap;
     region = XAllocID (dpy);
     req->region = (CARD32) region;
@@ -80,12 +80,12 @@ XFixesCreateRegionFromWindow (Display *dpy, Window window, int kind)
     XFixesCheckExtension (dpy, info, 0);
     LockDisplay (dpy);
     GetReq (XFixesCreateRegionFromWindow, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesCreateRegionFromWindow;
     region = XAllocID (dpy);
     req->region = (CARD32) region;
     req->window = (CARD32) window;
-    req->kind = kind;
+    req->kind = (CARD8) kind;
     UnlockDisplay (dpy);
     SyncHandle();
     return region;
@@ -101,7 +101,7 @@ XFixesCreateRegionFromGC (Display *dpy, GC gc)
     XFixesCheckExtension (dpy, info, 0);
     LockDisplay (dpy);
     GetReq (XFixesCreateRegionFromGC, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesCreateRegionFromGC;
     region = XAllocID (dpy);
     req->region = (CARD32) region;
@@ -121,7 +121,7 @@ XFixesCreateRegionFromPicture (Display *dpy, XID picture)
     XFixesCheckExtension (dpy, info, 0);
     LockDisplay (dpy);
     GetReq (XFixesCreateRegionFromPicture, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesCreateRegionFromPicture;
     region = XAllocID (dpy);
     req->region = (CARD32) region;
@@ -140,7 +140,7 @@ XFixesDestroyRegion (Display *dpy, XserverRegion region)
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesDestroyRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesDestroyRegion;
     req->region = (CARD32) region;
     UnlockDisplay (dpy);
@@ -158,7 +158,7 @@ XFixesSetRegion (Display *dpy, XserverRegion region,
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesSetRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesSetRegion;
     req->region = (CARD32) region;
     len = ((long) nrectangles) << 1;
@@ -178,7 +178,7 @@ XFixesCopyRegion (Display *dpy, XserverRegion dst, XserverRegion src)
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesCopyRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesCopyRegion;
     req->source = (CARD32) src;
     req->destination = (CARD32) dst;
@@ -196,7 +196,7 @@ XFixesUnionRegion (Display *dpy, XserverRegion dst,
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesUnionRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesUnionRegion;
     req->source1 = (CARD32) src1;
     req->source2 = (CARD32) src2;
@@ -215,7 +215,7 @@ XFixesIntersectRegion (Display *dpy, XserverRegion dst,
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesIntersectRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesIntersectRegion;
     req->source1 = (CARD32) src1;
     req->source2 = (CARD32) src2;
@@ -234,7 +234,7 @@ XFixesSubtractRegion (Display *dpy, XserverRegion dst,
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesSubtractRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesSubtractRegion;
     req->source1 = (CARD32) src1;
     req->source2 = (CARD32) src2;
@@ -253,7 +253,7 @@ XFixesInvertRegion (Display *dpy, XserverRegion dst,
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesInvertRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesInvertRegion;
     req->x = rect->x;
     req->y = rect->y;
@@ -274,11 +274,11 @@ XFixesTranslateRegion (Display *dpy, XserverRegion region, int dx, int dy)
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesTranslateRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesTranslateRegion;
     req->region = (CARD32) region;
-    req->dx = dx;
-    req->dy = dy;
+    req->dx = (INT16) dx;
+    req->dy = (INT16) dy;
     UnlockDisplay (dpy);
     SyncHandle();
 }
@@ -292,7 +292,7 @@ XFixesRegionExtents (Display *dpy, XserverRegion dst, XserverRegion src)
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesRegionExtents, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesRegionExtents;
     req->source = (CARD32) src;
     req->destination = (CARD32) dst;
@@ -325,7 +325,7 @@ XFixesFetchRegionAndBounds (Display	    *dpy,
     XFixesCheckExtension (dpy, info, NULL);
     LockDisplay (dpy);
     GetReq (XFixesFetchRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesFetchRegion;
     req->region = (CARD32) region;
     *nrectanglesRet = 0;
@@ -381,12 +381,12 @@ XFixesSetGCClipRegion (Display *dpy, GC gc,
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesSetGCClipRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesSetGCClipRegion;
     req->gc = (CARD32) gc->gid;
     req->region = (CARD32) region;
-    req->xOrigin = clip_x_origin;
-    req->yOrigin = clip_y_origin;
+    req->xOrigin = (INT16) clip_x_origin;
+    req->yOrigin = (INT16) clip_y_origin;
     UnlockDisplay (dpy);
     SyncHandle();
 }
@@ -401,12 +401,12 @@ XFixesSetWindowShapeRegion (Display *dpy, Window win, int shape_kind,
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesSetWindowShapeRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesSetWindowShapeRegion;
     req->dest = (CARD32) win;
-    req->destKind = shape_kind;
-    req->xOff = x_off;
-    req->yOff = y_off;
+    req->destKind = (BYTE) shape_kind;
+    req->xOff = (INT16) x_off;
+    req->yOff = (INT16) y_off;
     req->region = (CARD32) region;
     UnlockDisplay (dpy);
     SyncHandle();
@@ -423,12 +423,12 @@ XFixesSetPictureClipRegion (Display *dpy, XID picture,
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesSetPictureClipRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesSetPictureClipRegion;
     req->picture = (CARD32) picture;
     req->region = (CARD32) region;
-    req->xOrigin = clip_x_origin;
-    req->yOrigin = clip_y_origin;
+    req->xOrigin = (INT16) clip_x_origin;
+    req->yOrigin = (INT16) clip_y_origin;
     UnlockDisplay (dpy);
     SyncHandle();
 }
@@ -444,14 +444,14 @@ XFixesExpandRegion (Display *dpy, XserverRegion dst, XserverRegion src,
     XFixesSimpleCheckExtension (dpy, info);
     LockDisplay (dpy);
     GetReq (XFixesExpandRegion, req);
-    req->reqType = info->codes->major_opcode;
+    req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesExpandRegion;
     req->source = (CARD32) src;
     req->destination = (CARD32) dst;
-    req->left = left;
-    req->right = right;
-    req->top = top;
-    req->bottom = bottom;
+    req->left = (CARD16) left;
+    req->right = (CARD16) right;
+    req->top = (CARD16) top;
+    req->bottom = (CARD16) bottom;
     UnlockDisplay (dpy);
     SyncHandle();
 }
