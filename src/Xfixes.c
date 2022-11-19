@@ -123,7 +123,7 @@ XFixesExtAddDisplay (XFixesExtInfo *extinfo,
  * extension object. (Replaces XextRemoveDisplay.)
  */
 static int
-XFixesExtRemoveDisplay (XFixesExtInfo *extinfo, Display *dpy)
+XFixesExtRemoveDisplay (XFixesExtInfo *extinfo, const Display *dpy)
 {
     XFixesExtDisplayInfo *info, *prev;
 
@@ -164,7 +164,7 @@ XFixesExtRemoveDisplay (XFixesExtInfo *extinfo, Display *dpy)
  */
 static XFixesExtDisplayInfo *
 XFixesExtFindDisplay (XFixesExtInfo *extinfo,
-		      Display	    *dpy)
+		      const Display *dpy)
 {
     XFixesExtDisplayInfo *info;
 
