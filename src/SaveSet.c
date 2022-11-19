@@ -41,7 +41,7 @@ XFixesChangeSaveSet (Display *dpy, Window win, int mode, int target, int map)
     req->mode = mode;
     req->target = target;
     req->map = map;
-    req->window = win;
+    req->window = (CARD32) win;
     UnlockDisplay (dpy);
     SyncHandle ();
 }

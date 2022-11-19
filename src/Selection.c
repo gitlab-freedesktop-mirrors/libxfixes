@@ -41,9 +41,9 @@ XFixesSelectSelectionInput (Display	    *dpy,
     GetReq (XFixesSelectSelectionInput, req);
     req->reqType = info->codes->major_opcode;
     req->xfixesReqType = X_XFixesSelectSelectionInput;
-    req->window = win;
-    req->selection = selection;
-    req->eventMask = eventMask;
+    req->window = (CARD32) win;
+    req->selection = (CARD32) selection;
+    req->eventMask = (CARD32) eventMask;
     UnlockDisplay (dpy);
     SyncHandle ();
 }

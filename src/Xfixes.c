@@ -272,11 +272,11 @@ XFixesEventToWire(Display *dpy, XEvent *event, xEvent *wire)
 	aevent = (XFixesSelectionNotifyEvent *) event;
 	awire->type = aevent->type | (aevent->send_event ? 0x80 : 0);
 	awire->subtype = aevent->subtype;
-	awire->window = aevent->window;
-	awire->owner = aevent->owner;
-	awire->selection = aevent->selection;
-	awire->timestamp = aevent->timestamp;
-	awire->selectionTimestamp = aevent->selection_timestamp;
+	awire->window = (CARD32) aevent->window;
+	awire->owner = (CARD32) aevent->owner;
+	awire->selection = (CARD32) aevent->selection;
+	awire->timestamp = (CARD32) aevent->timestamp;
+	awire->selectionTimestamp = (CARD32) aevent->selection_timestamp;
 	return True;
     }
     case XFixesCursorNotify: {
@@ -286,10 +286,10 @@ XFixesEventToWire(Display *dpy, XEvent *event, xEvent *wire)
 	aevent = (XFixesCursorNotifyEvent *) event;
 	awire->type = aevent->type | (aevent->send_event ? 0x80 : 0);
 	awire->subtype = aevent->subtype;
-	awire->window = aevent->window;
-	awire->timestamp = aevent->timestamp;
-	awire->cursorSerial = aevent->cursor_serial;
-	awire->name = aevent->cursor_name;
+	awire->window = (CARD32) aevent->window;
+	awire->timestamp = (CARD32) aevent->timestamp;
+	awire->cursorSerial = (CARD32) aevent->cursor_serial;
+	awire->name = (CARD32) aevent->cursor_name;
     }
     }
     return False;
