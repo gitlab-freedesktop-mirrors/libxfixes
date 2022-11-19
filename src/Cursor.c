@@ -77,7 +77,7 @@ XFixesGetCursorImage (Display *dpy)
     xXFixesGetCursorImageAndNameReply	rep;
     size_t				npixels;
     size_t				nbytes_name;
-    size_t				nbytes, nread;
+    size_t				nbytes = 0, nread = 0;
     XFixesCursorImage			*image;
     char				*name;
 
