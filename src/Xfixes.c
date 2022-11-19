@@ -48,7 +48,6 @@ XFixesExtAddDisplay (XFixesExtInfo *extinfo,
                       char           *ext_name)
 {
     XFixesExtDisplayInfo    *info;
-    int			    ev;
 
     info = Xmalloc (sizeof (XFixesExtDisplayInfo));
     if (!info) return NULL;
@@ -65,7 +64,7 @@ XFixesExtAddDisplay (XFixesExtInfo *extinfo,
 	xXFixesQueryVersionReq	*req;
         XESetCloseDisplay (dpy, info->codes->extension,
                            XFixesCloseDisplay);
-	for (ev = info->codes->first_event;
+	for (int ev = info->codes->first_event;
 	     ev < info->codes->first_event + XFixesNumberEvents;
 	     ev++)
 	{

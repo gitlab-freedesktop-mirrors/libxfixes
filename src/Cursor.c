@@ -77,7 +77,7 @@ XFixesGetCursorImage (Display *dpy)
     xXFixesGetCursorImageAndNameReply	rep;
     size_t				npixels;
     size_t				nbytes_name;
-    size_t				nbytes, nread, rlength;
+    size_t				nbytes, nread;
     XFixesCursorImage			*image;
     char				*name;
 
@@ -105,6 +105,8 @@ XFixesGetCursorImage (Display *dpy)
     if ((rep.length < (INT_MAX >> 2)) &&
 	npixels < (((INT_MAX >> 3) - sizeof (XFixesCursorImage) - 1)
 		   - nbytes_name)) {
+	size_t	rlength;
+
 	/* reply data length */
 	nbytes = (size_t) rep.length << 2;
 	/* bytes of actual data in the reply */
