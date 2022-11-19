@@ -193,7 +193,7 @@ XFixesGetCursorName (Display *dpy, Cursor cursor, Atom *atom)
 	return NULL;
     }
     *atom = rep.atom;
-    if ((name = (char *) Xmalloc(rep.nbytes+1))) {
+    if ((name = Xmalloc(rep.nbytes+1)) != NULL) {
 	_XReadPad(dpy, name, (long)rep.nbytes);
 	name[rep.nbytes] = '\0';
     } else {

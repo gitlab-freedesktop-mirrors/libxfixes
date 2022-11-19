@@ -50,7 +50,7 @@ XFixesExtAddDisplay (XFixesExtInfo *extinfo,
     XFixesExtDisplayInfo    *info;
     int			    ev;
 
-    info = (XFixesExtDisplayInfo *) Xmalloc (sizeof (XFixesExtDisplayInfo));
+    info = Xmalloc (sizeof (XFixesExtDisplayInfo));
     if (!info) return NULL;
     info->display = dpy;
 
@@ -154,7 +154,7 @@ XFixesExtRemoveDisplay (XFixesExtInfo *extinfo, Display *dpy)
     if (info == extinfo->cur) extinfo->cur = NULL;  /* flush cache */
     _XUnlockMutex(_Xglobal_lock);
 
-    Xfree ((char *) info);
+    Xfree (info);
     return 1;
 }
 
