@@ -63,7 +63,7 @@ XFixesSetClientDisconnectMode(Display *dpy, int disconnect_mode)
     GetReq(XFixesSetClientDisconnectMode, req);
     req->reqType = (CARD8) info->codes->major_opcode;
     req->xfixesReqType = X_XFixesSetClientDisconnectMode;
-    req->disconnect_mode = disconnect_mode;
+    req->disconnect_mode = (CARD32) disconnect_mode;
     UnlockDisplay(dpy);
     SyncHandle();
 }
@@ -92,7 +92,7 @@ XFixesGetClientDisconnectMode(Display *dpy)
 	return XFixesClientDisconnectFlagDefault;
     }
 
-    disconnect_mode = rep.disconnect_mode;
+    disconnect_mode = (int) rep.disconnect_mode;
     UnlockDisplay(dpy);
     SyncHandle();
 

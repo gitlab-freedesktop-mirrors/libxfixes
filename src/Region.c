@@ -343,7 +343,7 @@ XFixesFetchRegionAndBounds (Display	    *dpy,
     if (rep.length < (INT_MAX >> 2)) {
 	nbytes = (long) rep.length << 2;
 	nrects = rep.length >> 1;
-	rects = Xmalloc (nrects * sizeof (XRectangle));
+	rects = Xmalloc ((size_t) nrects * sizeof (XRectangle));
     } else {
 	nbytes = 0;
 	nrects = 0;

@@ -312,7 +312,7 @@ XFixesCreatePointerBarrier(Display *dpy, Window w, int x1, int y1,
     req->y1 = (INT16) y1;
     req->x2 = (INT16) x2;
     req->y2 = (INT16) y2;
-    req->directions = directions;
+    req->directions = (CARD32) directions;
     if ((req->num_devices = (CARD16) num_devices)) {
 	int i;
 	CARD16 *devs = (CARD16 *)(req + 1);

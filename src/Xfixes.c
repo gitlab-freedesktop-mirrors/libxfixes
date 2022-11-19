@@ -87,8 +87,8 @@ XFixesExtAddDisplay (XFixesExtInfo *extinfo,
 	    Xfree(info);
 	    return NULL;
 	}
-	info->major_version = rep.majorVersion;
-	info->minor_version = rep.minorVersion;
+	info->major_version = (int) rep.majorVersion;
+	info->minor_version = (int) rep.minorVersion;
 	UnlockDisplay (dpy);
 	SyncHandle ();
     } else {
